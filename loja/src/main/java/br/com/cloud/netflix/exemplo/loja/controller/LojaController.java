@@ -19,7 +19,7 @@ public class LojaController {
 	}
 
 	@RequestMapping("/")
-	public List<Loja> getRaces() {
+	public List<Loja> getLojas() {
 		return lojas;
 	}
 }
