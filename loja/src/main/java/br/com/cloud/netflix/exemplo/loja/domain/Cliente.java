@@ -1,4 +1,4 @@
-package br.com.cloud.netflix.exemplo.cliente.domain;
+package br.com.cloud.netflix.exemplo.loja.domain;
 
 import java.util.List;
 
@@ -12,7 +12,6 @@ public class Cliente {
 	}
 	
 	public Cliente(String name, List<String> lojas) {
-		super();
 		this.name = name;
 		this.lojas = lojas;
 	}

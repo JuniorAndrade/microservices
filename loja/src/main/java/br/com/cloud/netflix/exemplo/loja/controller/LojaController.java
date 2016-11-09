@@ -3,13 +3,19 @@ package br.com.cloud.netflix.exemplo.loja.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.cloud.netflix.exemplo.loja.domain.Loja;
+import br.com.cloud.netflix.exemplo.loja.domain.LojaComClientes;
+import br.com.cloud.netflix.exemplo.loja.feign.ClientesClient;
 
 @RestController
 public class LojaController {
+
+	@Autowired
+	private ClientesClient clientesClient;
 
 	private static List<Loja> lojas = new ArrayList<Loja>();
 
@@ -21,5 +27,16 @@ public class LojaController {
 	@RequestMapping("/")
 	public List<Loja> getLojas() {
 		return lojas;
+	}
+
+	@RequestMapping("/clientes")
+	public List<LojaComClientes> getLojasComClientes() {
+		List<LojaComClientes> returnLojas = new ArrayList<LojaComClientes>();
+
+		for (Loja loja : lojas) {
+			returnLojas.add(new LojaComClientes(loja, clientesClient.getClientes(loja.getId())));
+		}
+
+		return returnLojas;
 	}
 }
