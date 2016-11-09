@@ -3,8 +3,6 @@ server:
 eureka:
   instance:
     preferIpAddress: true
-  server:
-    waitTimeInMsWhenSyncEmpty: 0
   client:
     registerWithEureka: false
     fetchRegistry: false
